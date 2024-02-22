@@ -14,7 +14,7 @@ class UserProfile(models.Model):
         ("crafting","crafting"),
         ("coding","coding"),
     )
-    skills=models.CharField(max_length=200,choices=options,)
+    skills=models.CharField(max_length=200,choices=options)
 
     def __str__(self):
         return self.name
@@ -25,7 +25,7 @@ def create_profile(sender,instance,created,**kwargs):
     
 class Product(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
-    title=models.CharField(max_length=200,related_name="pro_title")
+    title=models.CharField(max_length=200)
     media=models.FileField(upload_to="product_media")
     description=models.CharField(max_length=200)
     price=models.PositiveIntegerField()
