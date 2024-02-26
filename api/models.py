@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 class UserProfile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     name=models.CharField(max_length=200)
-    profile_pic=models.ImageField(upload_to="profile_pics",null=True)
+    profile_pic=models.ImageField(upload_to="profile_pics",default='default.png',null=True)
     bio=models.CharField(max_length=200)
     options=(
         ("drawing","drawing"),
@@ -53,9 +53,9 @@ class Cart(models.Model):
             return total
         else:
             return 0
-def create_cart(sender,insatnce,created,**kwargs):
+def create_cart(sender,instance,created,**kwargs):
     if created:
-        Cart.objects.create(user=insatnce)
+        Cart.objects.create(user=instance)
 
 class CartItems(models.Model):
     cart=models.ForeignKey(Cart,on_delete=models.CASCADE,related_name="cartitem")

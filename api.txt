@@ -1,0 +1,20 @@
+API for create user
+==================
+url     :   http://127.0.0.1:8000/api/register/
+metho   :   POST
+Data    :
+            {
+            username
+            email
+            password
+            }
+
+API for get Token
+==================
+url     :   http://127.0.0.1:8000/api/token/
+method  :   POST
+Data    :
+            {
+            username
+            password
+            }
