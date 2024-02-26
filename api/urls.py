@@ -7,6 +7,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 
 router=DefaultRouter()
 router.register("userprofile",views.UserProfileURView,basename="userprofiles")
+router.register("product",views.ProdcutCreateReadUpdateDeleteView,basename="products")
 
 
 from django.urls import re_path
