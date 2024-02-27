@@ -1,20 +1,64 @@
 API for create user
 ==================
-url     :   http://127.0.0.1:8000/api/register/
-metho   :   POST
-Data    :
-            {
-            username
-            email
-            password
-            }
+    url     :   http://127.0.0.1:8000/api/register/
+    metho   :   POST
+    Data    :
+                {
+                    username
+                    email
+                    password
+                }
 
 API for get Token
 ==================
-url     :   http://127.0.0.1:8000/api/token/
-method  :   POST
-Data    :
+    url     :   http://127.0.0.1:8000/api/token/
+    method  :   POST
+    Data    :
+                {
+                    username
+                    password
+                }
+
+API for list all Profiles
+=======================
+    url     :   http://127.0.0.1:8000/api/userprofile/
+    methos  :   get
+
+API for update userprofile
+=========================
+    url     :   localhost:8000/api/userprofile/{id}/
+    methos  :   PUT
+    Data    :   {
+                    name
+                    bio
+                    skills
+                    user
+                }
+
+API for user profile retrieve
+====================
+    url     :   localhost:8000/api/userprofile/{id}/
+    method  :   GET
+
+API for create product
+=================
+    url     : localhost:8000/api/product/
+    method  : POST
+    Data    :
             {
-            username
-            password
+                title,
+                description,
+                price,
+                media
             }
+
+API for update product
+=================
+    url     : localhost:8000/api/product/{id}/
+    method  : PATCH
+    Date    : {
+                title,
+                description,
+                proice,
+                media
+              }

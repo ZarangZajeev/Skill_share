@@ -35,21 +35,21 @@ class Product(models.Model):
         return self.title
 
 class Cart(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="cart")
+    user=models.OneToOneField(User,on_delete=models.CASCADE,related_name="cart")
     is_active=models.BooleanField(default=True)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 
     @property
     def cart_items(self):
-        qs=self.cartitem.all()
+        qs = self.cart_items.all()
         return qs
     
     @property
     def cart_total(self):
-        cart_items=self.cart_items
+        cart_items = self.cart_items.all()
         if cart_items:
-            total=sum([item.total for item in cart_items])
+            total = sum([item.total for item in cart_items])
             return total
         else:
             return 0
@@ -58,11 +58,16 @@ def create_cart(sender,instance,created,**kwargs):
         Cart.objects.create(user=instance)
 
 class CartItems(models.Model):
-    cart=models.ForeignKey(Cart,on_delete=models.CASCADE,related_name="cartitem")
+    cart=models.ForeignKey(Cart,on_delete=models.CASCADE,related_name="cart_items")
     product=models.ForeignKey(Product,on_delete=models.CASCADE)
+    qty=models.PositiveIntegerField(default=1)
     is_active=models.BooleanField(default=True)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 
+    @property
+    def total(self):
+        return self.qty*self.product.price
+    
 post_save.connect(create_profile,sender=User)
 post_save.connect(create_cart,sender=User)

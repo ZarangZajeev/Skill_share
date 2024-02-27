@@ -5,14 +5,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework import authentication, permissions
-from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.decorators import action
+from rest_framework import status
 
-
-from api.models import UserProfile,Product
-
-from api.serializers import UserProfileSerializer,ProductSerializer
-
-
+from api.models import UserProfile,Product,Cart,CartItems
+from api.serializers import UserProfileSerializer,ProductSerializer,CartItemSerializer,CartSerializer
 from api.serializers import UserSerializer
 
 # url: http://127.0.0.1:8000/api/register/
@@ -51,10 +48,46 @@ class ProdcutCreateReadUpdateDeleteView(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         # Get the product instance
         instance = self.get_object()
-
         # Check if the user making the request is the same user who added the product
         if request.user == instance.user:
             # Proceed with the update
             return super().update(request, *args, **kwargs)
         else:
             return Response({"detail": "You do not have permission to perform this action."}, status=403)
+        
+    # url: http://127.0.0.1:8000/api/product/{id}/add_to_cart/
+    @action(detail=True, methods=['post'])
+    def add_to_cart(self, request, *args, **kwargs):
+        product_id = kwargs.get("pk")
+        product_obj = Product.objects.get(id=product_id)
+        # Get or create a cart for the user
+        cart_obj, created = Cart.objects.get_or_create(user=request.user)
+        # Create a mutable copy of request.data
+        mutable_data = request.data.copy()
+        # Set the cart field in the mutable copy
+        mutable_data['cart'] = cart_obj.id
+        serializer = CartItemSerializer(data=mutable_data)
+        if serializer.is_valid():
+            serializer.save(product=product_obj)
+            return Response(data=serializer.data)
+        return Response(data=serializer.errors)
+
+class CartView(viewsets.ViewSet):
+    authentication_classes=[authentication.TokenAuthentication]
+    permission_classes=[permissions.IsAuthenticated]
+
+    def list(self,request,*args,**kwargs):
+        qs=request.user.cart
+        serializer=CartSerializer(qs,many=False)
+        return Response(data=serializer.data)
+    
+class CartItemView(viewsets.ModelViewSet):
+    authentication_classes=[authentication.TokenAuthentication]
+    permission_classes=[permissions.IsAuthenticated]
+
+    serializer_class=CartItemSerializer
+    queryset=CartItems.objects.all()
+
+    def create(self, request, *args, **kwargs):
+        raise serializers.ValidationError("Permission Deneid")
+    

@@ -8,6 +8,9 @@ from rest_framework.authtoken.views import ObtainAuthToken
 router=DefaultRouter()
 router.register("userprofile",views.UserProfileURView,basename="userprofiles")
 router.register("product",views.ProdcutCreateReadUpdateDeleteView,basename="products")
+router.register("cart/item",views.CartItemView,basename="cartitems")
+router.register("cart",views.CartView,basename="cart")
+
 
 
 from django.urls import re_path
@@ -30,8 +33,8 @@ schema_view = get_schema_view(
 
 
 urlpatterns=[
-    path('register/',views.SignUpView.as_view()),
-    path('token/',ObtainAuthToken.as_view()),
-        path('swagger/',schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+   path('register/',views.SignUpView.as_view()),
+   path('token/',ObtainAuthToken.as_view()),
+   path('swagger/',schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 
 ]+router.urls
