@@ -1,4 +1,4 @@
-API for create user
+1, API for create user
 ==================
     url     :   http://127.0.0.1:8000/api/register/
     metho   :   POST
@@ -9,7 +9,7 @@ API for create user
                     password
                 }
 
-API for get Token
+2, API for get Token
 ==================
     url     :   http://127.0.0.1:8000/api/token/
     method  :   POST
@@ -19,12 +19,12 @@ API for get Token
                     password
                 }
 
-API for list all Profiles
+3, API for list all Profiles
 =======================
     url     :   http://127.0.0.1:8000/api/userprofile/
     methos  :   get
 
-API for update userprofile
+4, API for update userprofile
 =========================
     url     :   localhost:8000/api/userprofile/{id}/
     methos  :   PUT
@@ -35,12 +35,12 @@ API for update userprofile
                     user
                 }
 
-API for user profile retrieve
+5, API for user profile retrieve
 ====================
     url     :   localhost:8000/api/userprofile/{id}/
     method  :   GET
 
-API for create product
+6, API for create product
 =================
     url     : localhost:8000/api/product/
     method  : POST
@@ -52,13 +52,41 @@ API for create product
                 media
             }
 
-API for update product
+7, API for list all products
+===================
+    url     : localhost:8000/api/product/
+    method  : GET
+
+8, API for retrieve product
+==================
+    url     : localhost:8000/api/product/{id}/
+    method  : GET
+
+9, API for update product
 =================
     url     : localhost:8000/api/product/{id}/
     method  : PATCH
-    Date    : {
+    Data    : {
                 title,
                 description,
                 proice,
                 media
               }
+
+10, API for delete product
+===============
+    url     : localhost:8000/api/product/{id}/
+    method  : DELETE
+
+11, API for add product to cart
+=================
+    url     : http://127.0.0.1:8000/api/product/{id}/add_to_cart/
+    method  : POST
+    Data    : {
+                qty
+              }
+
+12, API for list cart CartItems
+===============
+    url     : localhost:8000/api/cart/
+    method  : GET

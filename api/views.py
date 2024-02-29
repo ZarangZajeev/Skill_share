@@ -24,6 +24,9 @@ class SignUpView(APIView):
 # url: http://127.0.0.1:8000/api/userprofile/
     
 class UserProfileURView(viewsets.ModelViewSet):
+    authentication_classes=[authentication.TokenAuthentication]
+    permission_classes=[permissions.IsAuthenticated]
+
     serializer_class=UserProfileSerializer
     queryset=UserProfile.objects.all()
 
@@ -84,7 +87,7 @@ class CartView(viewsets.ViewSet):
 class CartItemView(viewsets.ModelViewSet):
     authentication_classes=[authentication.TokenAuthentication]
     permission_classes=[permissions.IsAuthenticated]
-
+    
     serializer_class=CartItemSerializer
     queryset=CartItems.objects.all()
 
