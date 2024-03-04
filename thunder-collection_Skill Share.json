@@ -1,0 +1,306 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Skill Share",
+    "dateExported": "2024-03-04T05:26:07.373Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "86c4cd3b-5b54-467a-a4a1-9859ac44cd7a",
+            "colId": "459b2d64-14d2-4529-aa3f-ef5feb9752fc",
+            "containerId": "",
+            "name": "User register",
+            "url": "http://127.0.0.1:8000/api/register/",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-26T05:17:36.380Z",
+            "modified": "2024-02-27T06:44:23.853Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "username",
+                        "value": "vishnu"
+                    },
+                    {
+                        "name": "email",
+                        "value": "vishnu@gmail.com"
+                    },
+                    {
+                        "name": "password",
+                        "value": "Password@123"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "ba1484ef-0bbb-4a13-800d-c607b7b88809",
+            "colId": "459b2d64-14d2-4529-aa3f-ef5feb9752fc",
+            "containerId": "",
+            "name": "get token",
+            "url": "http://127.0.0.1:8000/api/token/",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-02-26T05:31:58.713Z",
+            "modified": "2024-02-29T05:43:30.231Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "username",
+                        "value": "sarang"
+                    },
+                    {
+                        "name": "password",
+                        "value": "Password@123"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "1c1e1208-d10c-4fe5-9cfb-630a906eca0e",
+            "colId": "459b2d64-14d2-4529-aa3f-ef5feb9752fc",
+            "containerId": "",
+            "name": "list user profiles",
+            "url": "http://127.0.0.1:8000/api/userprofile",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-02-26T06:28:44.416Z",
+            "modified": "2024-02-26T06:28:52.943Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "6575e35e-3819-4475-b956-deaf7287e92e",
+            "colId": "459b2d64-14d2-4529-aa3f-ef5feb9752fc",
+            "containerId": "",
+            "name": "Update user profile",
+            "url": "localhost:8000/api/userprofile/3/",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2024-02-26T06:31:07.254Z",
+            "modified": "2024-02-26T06:36:46.504Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"name\": \"SARANG SAJEEV\",\n    \"bio\": \"Hello world\",\n    \"skills\": \"coding\",\n    \"user\": 3\n  }",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "56d2e33b-b400-4aa0-9fc3-0ad21c4a1123",
+            "colId": "459b2d64-14d2-4529-aa3f-ef5feb9752fc",
+            "containerId": "",
+            "name": "User profile retrieve",
+            "url": "localhost:8000/api/userprofile/3/",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-02-26T06:39:07.111Z",
+            "modified": "2024-02-29T05:59:35.249Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token a4f397b64e1dfaf2c5cd9d43ceeea337a71a1573"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "fd0f454a-74f7-471f-99d9-0338272814a1",
+            "colId": "459b2d64-14d2-4529-aa3f-ef5feb9752fc",
+            "containerId": "",
+            "name": "Create product",
+            "url": "localhost:8000/api/product/",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2024-02-26T08:35:19.469Z",
+            "modified": "2024-02-26T09:10:01.012Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token d4cc937620e50e70d3dc87fbf7c97218460f3522"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "title",
+                        "value": "Relation"
+                    },
+                    {
+                        "name": "description",
+                        "value": "Bond"
+                    },
+                    {
+                        "name": "price",
+                        "value": "2000"
+                    }
+                ],
+                "files": [
+                    {
+                        "name": "media",
+                        "value": "c:\\Users\\saran\\Downloads\\hand.jpg"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "440974ea-998f-4081-81c8-a588a292fbbb",
+            "colId": "459b2d64-14d2-4529-aa3f-ef5feb9752fc",
+            "containerId": "",
+            "name": "List All Products",
+            "url": "localhost:8000/api/product/",
+            "method": "GET",
+            "sortNum": 75000,
+            "created": "2024-02-27T14:10:58.469Z",
+            "modified": "2024-02-27T14:11:28.571Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token f87b8dcec92b39a586204e622d44d2f67d5176d0"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "bb2aaae8-01be-4e47-8f0d-bfcfda873edb",
+            "colId": "459b2d64-14d2-4529-aa3f-ef5feb9752fc",
+            "containerId": "",
+            "name": "Product retrieve",
+            "url": "localhost:8000/api/product/4/",
+            "method": "GET",
+            "sortNum": 77500,
+            "created": "2024-02-27T14:07:56.855Z",
+            "modified": "2024-02-27T14:08:41.611Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token f87b8dcec92b39a586204e622d44d2f67d5176d0"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "e33c5776-bb87-454e-ad09-1d0d5d25b233",
+            "colId": "459b2d64-14d2-4529-aa3f-ef5feb9752fc",
+            "containerId": "",
+            "name": "Product update",
+            "url": "localhost:8000/api/product/4/",
+            "method": "PATCH",
+            "sortNum": 80000,
+            "created": "2024-02-26T09:56:46.432Z",
+            "modified": "2024-02-26T10:39:34.876Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token d4cc937620e50e70d3dc87fbf7c97218460f3522"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "title",
+                        "value": "Relatioship"
+                    },
+                    {
+                        "name": "description",
+                        "value": "Good dayzzzz"
+                    },
+                    {
+                        "name": "price",
+                        "value": "2500"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "1c31934c-8a1d-4663-818e-f4a8271d8439",
+            "colId": "459b2d64-14d2-4529-aa3f-ef5feb9752fc",
+            "containerId": "",
+            "name": "Product delete",
+            "url": "localhost:8000/api/product/1/",
+            "method": "DELETE",
+            "sortNum": 82500,
+            "created": "2024-02-27T14:10:02.239Z",
+            "modified": "2024-02-27T14:10:33.424Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token f87b8dcec92b39a586204e622d44d2f67d5176d0"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "ea99bfe0-ba4f-456a-ab3d-496719b8883a",
+            "colId": "459b2d64-14d2-4529-aa3f-ef5feb9752fc",
+            "containerId": "",
+            "name": "add to cart",
+            "url": "http://127.0.0.1:8000/api/product/2/add_to_cart/",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2024-02-27T05:46:50.568Z",
+            "modified": "2024-02-27T14:25:08.062Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token f87b8dcec92b39a586204e622d44d2f67d5176d0"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "qty",
+                        "value": "2"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "72ba7995-3195-4432-86d6-7a36c9f2181d",
+            "colId": "459b2d64-14d2-4529-aa3f-ef5feb9752fc",
+            "containerId": "",
+            "name": "cart items",
+            "url": "localhost:8000/api/cart/",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2024-02-27T09:31:03.814Z",
+            "modified": "2024-02-29T05:43:41.174Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token a4f397b64e1dfaf2c5cd9d43ceeea337a71a1573"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
