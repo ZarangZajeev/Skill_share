@@ -8,9 +8,9 @@ from rest_framework import authentication, permissions
 from rest_framework.decorators import action
 from rest_framework import status
 
-from api.models import UserProfile,Product,Cart,CartItems
+from api.models import UserProfile,Product,Cart,CartItems,Comment
 from api.serializers import UserProfileSerializer,ProductSerializer,CartItemSerializer,CartSerializer
-from api.serializers import UserSerializer
+from api.serializers import UserSerializer,CommentSerializer
 
 # url: http://127.0.0.1:8000/api/register/
 class SignUpView(APIView):
@@ -93,4 +93,19 @@ class CartItemView(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         raise serializers.ValidationError("Permission Deneid")
-    
+
+class CommentView(viewsets.ModelViewSet):
+    authentication_classes=[authentication.TokenAuthentication]
+    permission_classes=[permissions.IsAuthenticated]
+
+    serializer_class=CommentSerializer
+    def get_queryset(self):
+        product_id = self.kwargs.get('product_id')
+        return Comment.objects.filter(product_id=product_id)
+
+
+    def perform_create(self, serializer):
+        product_id = self.kwargs.get('product_id')
+        serializer.save(user=self.request.user, product_id=product_id)
+
+class BidRequestView(viewsets.ModelViewSet):

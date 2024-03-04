@@ -10,7 +10,7 @@ router.register("userprofile",views.UserProfileURView,basename="userprofiles")
 router.register("product",views.ProdcutCreateReadUpdateDeleteView,basename="products")
 router.register("cart/item",views.CartItemView,basename="cartitems")
 router.register("cart",views.CartView,basename="cart")
-
+router.register('comment/(?P<product_id>\d+)',views.CommentView, basename='comment')
 
 
 from django.urls import re_path
