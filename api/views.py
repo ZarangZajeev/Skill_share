@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 
+from rest_framework import generics
 from rest_framework import serializers
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -10,7 +12,7 @@ from rest_framework import status
 
 from api.models import UserProfile,Product,Cart,CartItems,Comment
 from api.serializers import UserProfileSerializer,ProductSerializer,CartItemSerializer,CartSerializer
-from api.serializers import UserSerializer,CommentSerializer
+from api.serializers import UserSerializer,CommentSerializer,BidsSerializer
 
 # url: http://127.0.0.1:8000/api/register/
 class SignUpView(APIView):
@@ -108,4 +110,15 @@ class CommentView(viewsets.ModelViewSet):
         product_id = self.kwargs.get('product_id')
         serializer.save(user=self.request.user, product_id=product_id)
 
-class BidRequestView(viewsets.ModelViewSet):
+class BidView(viewsets.ModelViewSet):
+    authentication_classes=[authentication.TokenAuthentication]
+    permission_classes=[permissions.IsAuthenticated]
+
+    serializer_class=BidsSerializer
+    def get_queryset(self):
+        product_id = self.kwargs.get('product_id')
+        return Comment.objects.filter(product_id=product_id)
+
+    def perform_create(self, serializer):
+        product_id = self.kwargs.get('product_id')
+        serializer.save(user=self.request.user, product_id=product_id)

@@ -36,6 +36,7 @@ class CartItemSerializer(serializers.ModelSerializer):
                      "updated_at",
                      "cart",
                      ]
+      
 class CartSerializer(serializers.ModelSerializer):
     cart_items=CartItemSerializer(read_only=True,many=True)
     cart_total=serializers.IntegerField(read_only=True)
