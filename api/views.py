@@ -10,7 +10,7 @@ from rest_framework import authentication, permissions
 from rest_framework.decorators import action
 from rest_framework import status
 
-from api.models import UserProfile,Product,Cart,CartItems,Comment
+from api.models import UserProfile,Product,Cart,CartItems,Comment,Bids
 from api.serializers import UserProfileSerializer,ProductSerializer,CartItemSerializer,CartSerializer
 from api.serializers import UserSerializer,CommentSerializer,BidsSerializer
 
@@ -110,7 +110,7 @@ class CommentView(viewsets.ModelViewSet):
         product_id = self.kwargs.get('product_id')
         serializer.save(user=self.request.user, product_id=product_id)
 
-class BidView(viewsets.ModelViewSet):
+class BidAddView(viewsets.ModelViewSet):
     authentication_classes=[authentication.TokenAuthentication]
     permission_classes=[permissions.IsAuthenticated]
 
@@ -122,3 +122,17 @@ class BidView(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         product_id = self.kwargs.get('product_id')
         serializer.save(user=self.request.user, product_id=product_id)
+
+class BidView(viewsets.ModelViewSet):
+    authentication_classes=[authentication.TokenAuthentication]
+    permission_classes=[permissions.IsAuthenticated]
+
+    serializer_class=BidsSerializer
+    queryset=Bids.objects.all()
+
+    def get_queryset(self):
+        user = self.request.user
+        return Bids.objects.filter(user=user) | Bids.objects.filter(product__user=user)
+    
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

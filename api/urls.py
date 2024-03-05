@@ -11,7 +11,8 @@ router.register("product",views.ProdcutCreateReadUpdateDeleteView,basename="prod
 router.register("cart/item",views.CartItemView,basename="cartitems")
 router.register("cart",views.CartView,basename="cart")
 router.register('comment/(?P<product_id>\d+)',views.CommentView, basename='comment')
-router.register('product/bids/(?P<product_id>\d+)',views.BidView,basename="bid")
+router.register('product/bids/(?P<product_id>\d+)',views.BidAddView,basename="bidadd")
+router.register('bids',views.BidView,basename="bids")
 
 
 from django.urls import re_path
