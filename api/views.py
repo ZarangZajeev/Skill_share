@@ -10,6 +10,8 @@ from rest_framework import authentication, permissions
 from rest_framework.decorators import action
 from rest_framework import status
 
+from exam.models import Answer
+
 from api.models import UserProfile,Product,Cart,CartItems,Comment,Bids
 from api.serializers import UserProfileSerializer,ProductSerializer,CartItemSerializer,CartSerializer
 from api.serializers import UserSerializer,CommentSerializer,BidsSerializer
@@ -48,7 +50,17 @@ class ProdcutCreateReadUpdateDeleteView(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         # Associate the user making the request with the product
         serializer.save(user=self.request.user)
-    
+
+    def create(self, request, *args, **kwargs):
+        # Get the user's Answer status
+        answer_status = Answer.objects.filter(user=request.user).first()
+
+        # Check if the user has passed the exam
+        if answer_status and answer_status.status == "pass":
+            return super().create(request, *args, **kwargs)
+        else:
+            return Response({"detail": "User hasn't passed the exam. Cannot create a product."}, status=status.HTTP_403_FORBIDDEN)
+
     def update(self, request, *args, **kwargs):
         # Get the product instance
         instance = self.get_object()
