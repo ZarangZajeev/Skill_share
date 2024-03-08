@@ -24,7 +24,6 @@ class SignUpView(APIView):
         return Response(data=serializer.errors)
     
 # url: http://127.0.0.1:8000/api/userprofile/
-    
 class UserProfileURView(viewsets.ModelViewSet):
     authentication_classes=[authentication.TokenAuthentication]
     permission_classes=[permissions.IsAuthenticated]
@@ -77,6 +76,7 @@ class ProdcutCreateReadUpdateDeleteView(viewsets.ModelViewSet):
             return Response(data=serializer.data)
         return Response(data=serializer.errors)
 
+# url: localhost:8000/api/cart/
 class CartView(viewsets.ViewSet):
     authentication_classes=[authentication.TokenAuthentication]
     permission_classes=[permissions.IsAuthenticated]
@@ -110,6 +110,7 @@ class CommentView(viewsets.ModelViewSet):
         product_id = self.kwargs.get('product_id')
         serializer.save(user=self.request.user, product_id=product_id)
 
+# Bid add view
 class BidAddView(viewsets.ModelViewSet):
     authentication_classes=[authentication.TokenAuthentication]
     permission_classes=[permissions.IsAuthenticated]
@@ -123,6 +124,7 @@ class BidAddView(viewsets.ModelViewSet):
         product_id = self.kwargs.get('product_id')
         serializer.save(user=self.request.user, product_id=product_id)
 
+# Bid view
 class BidView(viewsets.ModelViewSet):
     authentication_classes=[authentication.TokenAuthentication]
     permission_classes=[permissions.IsAuthenticated]
