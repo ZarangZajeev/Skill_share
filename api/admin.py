@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.utils.html import format_html
 
-from exam.models import Answer
+from exam.models import Answer,Question,Topic
 # Register your models here.
 
 class AnswerAdmin(admin.ModelAdmin):
@@ -46,3 +46,5 @@ class AnswerAdmin(admin.ModelAdmin):
     download_link.short_description = "Download Link"
 
 admin.site.register(Answer)
+admin.site.register(Question)
+admin.site.register(Topic)
