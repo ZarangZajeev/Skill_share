@@ -16,6 +16,31 @@ from api.models import UserProfile,Product,Cart,CartItems,Comment,Bids
 from api.serializers import UserProfileSerializer,ProductSerializer,CartItemSerializer,CartSerializer
 from api.serializers import UserSerializer,CommentSerializer,BidsSerializer
 
+from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.permissions import AllowAny
+
+class ObtainTokenView(APIView):
+    permission_classes = [AllowAny]  # Allow any user to obtain a token
+
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        if not username or not password:
+            return Response({'error': 'Both username and password are required'}, status=400)
+
+        # Perform authentication
+        user = authenticate(username=username, password=password)
+        if not user:
+            return Response({'error': 'Invalid credentials'}, status=400)
+
+        # Create or retrieve token
+        token, created = Token.objects.get_or_create(user=user)
+
+        return Response({'token': token.key, 'user_id': user.id})
+
 # url: http://127.0.0.1:8000/api/register/
 class SignUpView(APIView):
     def post(self,request,*args,**kwargs):
