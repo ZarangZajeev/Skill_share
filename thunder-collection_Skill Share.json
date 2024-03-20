@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Skill Share",
-    "dateExported": "2024-03-19T06:17:30.452Z",
+    "dateExported": "2024-03-20T09:48:26.084Z",
     "version": "1.1",
     "folders": [
         {
@@ -67,11 +67,11 @@
             "colId": "459b2d64-14d2-4529-aa3f-ef5feb9752fc",
             "containerId": "5b387b99-c16a-4c85-81ce-e2e8a862de37",
             "name": "list user profiles",
-            "url": "http://127.0.0.1:8000/api/userprofile",
+            "url": "http://127.0.0.1:8000/api/userprofile/",
             "method": "GET",
             "sortNum": 10000,
             "created": "2024-02-26T06:28:44.416Z",
-            "modified": "2024-03-04T09:51:48.215Z",
+            "modified": "2024-03-20T09:48:10.941Z",
             "headers": [
                 {
                     "name": "Authorization",
@@ -79,6 +79,7 @@
                 }
             ],
             "params": [],
+            "reqType": "get",
             "tests": []
         },
         {
@@ -158,12 +159,12 @@
             "_id": "1bf3bf8a-0b89-40bb-85a9-1915cce95bc8",
             "colId": "459b2d64-14d2-4529-aa3f-ef5feb9752fc",
             "containerId": "6174f619-210f-4b53-a94f-cd8ef05a5505",
-            "name": "list comment",
-            "url": "localhost:8000/api/comment/",
+            "name": "rretreave commnt",
+            "url": "localhost:8000/api/comment/2/",
             "method": "GET",
             "sortNum": 10000,
             "created": "2024-03-04T09:50:22.652Z",
-            "modified": "2024-03-04T09:52:13.262Z",
+            "modified": "2024-03-20T09:47:46.921Z",
             "headers": [
                 {
                     "name": "Authorization",
@@ -171,6 +172,7 @@
                 }
             ],
             "params": [],
+            "reqType": "get",
             "tests": []
         },
         {
@@ -570,11 +572,11 @@
             "colId": "459b2d64-14d2-4529-aa3f-ef5feb9752fc",
             "containerId": "d4d5fdfe-503b-4c1d-bf23-6a98024ee7d0",
             "name": "topic vise questions",
-            "url": "localhost:8000/examapi/topics/4/questions/",
+            "url": "localhost:8000/examapi/topics/1/questions/",
             "method": "GET",
             "sortNum": 60000,
             "created": "2024-03-07T06:08:52.434Z",
-            "modified": "2024-03-08T09:32:59.125Z",
+            "modified": "2024-03-20T09:43:10.262Z",
             "headers": [
                 {
                     "name": "Authorization",
