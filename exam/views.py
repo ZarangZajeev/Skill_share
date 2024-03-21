@@ -46,7 +46,7 @@ class ViewQuestionView(viewsets.ModelViewSet):
 
 class TopicQuestionsView(generics.ListAPIView):
     authentication_classes = [authentication.TokenAuthentication]
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = QuestionSerializer
 
     def get_queryset(self):
