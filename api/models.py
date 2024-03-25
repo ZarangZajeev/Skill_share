@@ -92,6 +92,17 @@ class Bids(models.Model):
     def __str__(self):
         return self.amount
 
+
+class Chat(models.Model):
+    send_user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="send_user")
+    receiver_user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="receiver_user")
+    message=models.CharField(max_length=500)
+    image=models.ImageField(upload_to="chat_image",null=True)
+    created_date=created_date=models.DateTimeField(auto_now_add=True)
+
+
+    def _str_(self):
+        return self.message
     
 post_save.connect(create_profile,sender=User)
 post_save.connect(create_cart,sender=User)

@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from api.models import Product,UserProfile,CartItems,Cart,Comment,Bids
+from api.models import Product,UserProfile,CartItems,Cart,Comment,Bids,Chat
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -71,3 +71,9 @@ class BidsSerializer(serializers.ModelSerializer):
                           "user",
                           "product",
                           ]
+        
+class ChatSerializer(serializers.ModelSerializer):
+   class Meta:
+      model=Chat
+      fields="__all__"
+      read_only_fields=["id","created_date","send_user","receiver_user"]

@@ -12,9 +12,9 @@ from rest_framework import status
 
 from exam.models import Answer
 
-from api.models import UserProfile,Product,Cart,CartItems,Comment,Bids
+from api.models import UserProfile,Product,Cart,CartItems,Comment,Bids,Chat,User
 from api.serializers import UserProfileSerializer,ProductSerializer,CartItemSerializer,CartSerializer
-from api.serializers import UserSerializer,CommentSerializer,BidsSerializer
+from api.serializers import UserSerializer,CommentSerializer,BidsSerializer,ChatSerializer
 
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
@@ -175,3 +175,35 @@ class BidView(viewsets.ModelViewSet):
     
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+# Chat
+class SendMessageAPIView(generics.CreateAPIView):
+    serializer_class = ChatSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes =[authentication.TokenAuthentication]
+
+    def perform_create(self, serializer):
+        sender_user = self.request.user  # Extract sender user from the authentication token
+        receiver_user_id = self.kwargs.get('receiver_id')
+        receiver_user = get_object_or_404(User, id=receiver_user_id)
+
+        serializer.save(send_user=sender_user, receiver_user=receiver_user)
+
+    def get_queryset(self):
+        sender_user = self.request.user  # Extract sender user from the authentication token
+        receiver_user_id = self.kwargs.get('receiver_id')
+        receiver_user = get_object_or_404(User, id=receiver_user_id)
+
+        queryset = Chat.objects.filter(send_user=sender_user, receiver_user=receiver_user)
+        return queryset
+    
+# Chat list view
+class UserChatMessagesAPIView(generics.ListAPIView):
+    serializer_class = ChatSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [authentication.TokenAuthentication]
+
+    def get_queryset(self):
+        user = self.request.user  # Get the authenticated user
+        queryset = Chat.objects.filter(send_user=user) | Chat.objects.filter(receiver_user=user)
+        return queryset

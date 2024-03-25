@@ -37,6 +37,8 @@ schema_view = get_schema_view(
 
 urlpatterns=[
    path('register/',views.SignUpView.as_view()),
+   path('send-message/<int:receiver_id>/', views.SendMessageAPIView.as_view(), name='send_message'),
+   path('user-chat-messages/',views.UserChatMessagesAPIView.as_view(), name='user_chat_messages'),
    path('token/',views.ObtainTokenView.as_view(),name="token"),
    path('swagger/',schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 
