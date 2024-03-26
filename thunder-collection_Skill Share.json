@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Skill Share",
-    "dateExported": "2024-03-20T09:48:26.084Z",
+    "dateExported": "2024-03-26T05:54:12.948Z",
     "version": "1.1",
     "folders": [
         {
@@ -59,6 +59,13 @@
             "containerId": "",
             "created": "2024-03-07T07:05:27.454Z",
             "sortNum": 90000
+        },
+        {
+            "_id": "221ed667-a7be-4c6f-a2af-b741d29667ce",
+            "name": "Chat",
+            "containerId": "",
+            "created": "2024-03-25T10:09:07.793Z",
+            "sortNum": 100000
         }
     ],
     "requests": [
@@ -528,7 +535,7 @@
             "method": "POST",
             "sortNum": 45000,
             "created": "2024-02-26T05:31:58.713Z",
-            "modified": "2024-03-07T07:09:32.954Z",
+            "modified": "2024-03-25T10:15:45.268Z",
             "headers": [],
             "params": [],
             "body": {
@@ -537,7 +544,7 @@
                 "form": [
                     {
                         "name": "username",
-                        "value": "sarang"
+                        "value": "aravindh"
                     },
                     {
                         "name": "password",
@@ -545,7 +552,6 @@
                     }
                 ]
             },
-            "reqType": "post",
             "tests": []
         },
         {
@@ -576,11 +582,11 @@
             "method": "GET",
             "sortNum": 60000,
             "created": "2024-03-07T06:08:52.434Z",
-            "modified": "2024-03-20T09:43:10.262Z",
+            "modified": "2024-03-21T04:14:32.760Z",
             "headers": [
                 {
                     "name": "Authorization",
-                    "value": "Token 2ef4ad08fbc328b342d5dd45eb8f45d9ebaf449f"
+                    "value": "Token a4f397b64e1dfaf2c5cd9d43ceeea337a71a1573"
                 }
             ],
             "params": [],
@@ -647,6 +653,54 @@
             "created": "2024-03-07T09:57:35.005Z",
             "modified": "2024-03-07T09:58:09.846Z",
             "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "2441d645-db44-4828-b557-c463055cd749",
+            "colId": "459b2d64-14d2-4529-aa3f-ef5feb9752fc",
+            "containerId": "221ed667-a7be-4c6f-a2af-b741d29667ce",
+            "name": "Send message",
+            "url": "localhost:8000/api/send-message/4/",
+            "method": "POST",
+            "sortNum": 110000,
+            "created": "2024-03-25T10:09:53.131Z",
+            "modified": "2024-03-25T10:12:28.584Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token a4f397b64e1dfaf2c5cd9d43ceeea337a71a1573"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "message",
+                        "value": "hey"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "bcda725d-c7dd-475a-b141-f8626eba14a3",
+            "colId": "459b2d64-14d2-4529-aa3f-ef5feb9752fc",
+            "containerId": "221ed667-a7be-4c6f-a2af-b741d29667ce",
+            "name": "Chat list",
+            "url": "localhost:8000/api/user-chat-messages/",
+            "method": "GET",
+            "sortNum": 120000,
+            "created": "2024-03-25T10:13:08.840Z",
+            "modified": "2024-03-25T10:15:51.147Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token a93d93cb842e2e27c3c81931a773ea14e3bb5ece"
+                }
+            ],
             "params": [],
             "tests": []
         }
