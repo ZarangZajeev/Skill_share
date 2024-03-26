@@ -15,6 +15,7 @@ class UserProfile(models.Model):
         ("coding","coding"),
     )
     skills=models.CharField(max_length=200,choices=options)
+    user_skill=models.CharField(max_length=200,null=True)
 
     def __str__(self):
         return self.name
