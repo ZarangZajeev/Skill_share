@@ -31,6 +31,14 @@ class Product(models.Model):
     description=models.CharField(max_length=200)
     price=models.PositiveIntegerField()
     created_date=models.DateTimeField(auto_now_add=True)
+    link=models.URLField(null=True)
+    options=(
+        ("drawing","drawing"),
+        ("communication","communication"),
+        ("crafting","crafting"),
+        ("coding","coding"),
+    )
+    category=models.CharField(max_length=200,choices=options,null=True)
 
     def __str__(self):
         return self.title

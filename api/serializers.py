@@ -12,6 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
         return User.objects.create_user(**validated_data)
     
 class UserProfileSerializer(serializers.ModelSerializer):
+    user=serializers.StringRelatedField()
     class Meta:
         model=UserProfile
         fields="__all__"
