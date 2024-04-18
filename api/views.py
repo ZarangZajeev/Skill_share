@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
 
 from rest_framework import generics
 from rest_framework import serializers
@@ -9,6 +10,7 @@ from rest_framework import viewsets
 from rest_framework import authentication, permissions
 from rest_framework.decorators import action
 from rest_framework import status
+from rest_framework.renderers import JSONRenderer
 
 from exam.models import Answer
 
@@ -207,3 +209,27 @@ class UserChatMessagesAPIView(generics.ListAPIView):
         user = self.request.user  # Get the authenticated user
         queryset = Chat.objects.filter(send_user=user) | Chat.objects.filter(receiver_user=user)
         return queryset
+        
+
+def get_products_by_category(request, category):
+    if request.method == 'GET':
+        # Query products based on the category
+        products = Product.objects.filter(category=category)
+
+        # Serialize products to JSON
+        serialized_products = [{
+            'user':product.user.id,
+            'id': product.id,
+            'title': product.title,
+            'description': product.description,
+            'price': product.price,
+            'created_date': product.created_date,
+            'link': product.link,
+            # Add other fields if needed
+        } for product in products]
+
+        # Return the JSON response
+        return JsonResponse({'products': serialized_products})
+    else:
+        # Return an error for unsupported HTTP methods
+        return JsonResponse({'error': 'Only GET method is supported'}, status=405)

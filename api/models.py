@@ -37,6 +37,7 @@ class Product(models.Model):
         ("communication","communication"),
         ("crafting","crafting"),
         ("coding","coding"),
+        ("others","others"),
     )
     category=models.CharField(max_length=200,choices=options,null=True)
 

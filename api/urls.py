@@ -15,11 +15,14 @@ router.register('product/bids/(?P<product_id>\d+)',views.BidAddView,basename="bi
 router.register('bids',views.BidView,basename="bids")
 
 
+
+
 from django.urls import re_path
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from api import views
+from .views import get_products_by_category
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -41,5 +44,6 @@ urlpatterns=[
    path('user-chat-messages/',views.UserChatMessagesAPIView.as_view(), name='user_chat_messages'),
    path('token/',views.ObtainTokenView.as_view(),name="token"),
    path('swagger/',schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+   path('products/category/<str:category>/', get_products_by_category, name='products_by_category'),
 
 ]+router.urls
