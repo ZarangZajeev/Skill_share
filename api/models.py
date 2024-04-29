@@ -22,7 +22,7 @@ class UserProfile(models.Model):
     
 def create_profile(sender,instance,created,**kwargs):
     if created:
-        UserProfile.objects.create(user=instance)
+        UserProfile.objects.create(User=instance)
     
 class Product(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
